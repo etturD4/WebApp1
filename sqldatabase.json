@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "functions": [],
+    "variables": {},
+    "parameters": {
+        "adminLogin": {
+            "type": "string",
+            "metadata": {
+                "description": "Administrator username"
+            }
+        },
+        "adminPassword": {
+            "type": "string",
+            "metadata": {
+                "description": "Administrator password"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Sql/servers",
+            "apiVersion": "2022-02-01-preview",
+            "name": "sqlServer2942",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "administratorLogin": "[parameters('adminLogin')]",
+                "administratorLoginPassword": "[parameters('adminPassword')]"
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/databases",
+            "name": "[format('{0}/{1}', 'sqlServer2942', 'DB2942')]",
+            "apiVersion": "2022-02-01-preview",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Basic"
+            },
+            "properties": {},
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', '')]"
+            ]
+        }
+    ]
+}
