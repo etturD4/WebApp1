@@ -1,7 +1,7 @@
 {
   "type": "Microsoft.Resources/deployments",
   "apiVersion": "2021-04-01",
-  "name": "childTemplare",
+  "name": "LinkedTemplate",
   "properties": {
     "mode": "Incremental",
     "template": {
@@ -11,7 +11,7 @@
         {
           "type": "Microsoft.Sql/servers",
           "apiVersion": "2022-02-01-preview",
-          "name": "[variables('sqlServerName')]",
+          "name": "sqlServer2942",
           "location": "[resourceGroup().location]",
           "properties": {
             "administratorLogin": "[parameters('adminLogin')]",
@@ -20,7 +20,7 @@
         },
         {
           "type": "Microsoft.Sql/servers/databases",
-          "name": "[format('{0}/{1}', variables('sqlServerName'), variables('databaseName'))]",
+          "name": "[format('{0}/{1}', 'sqlServer2942', 'DB2942')]",
           "apiVersion": "2022-02-01-preview",
           "location": "[resourceGroup().location]",
           "sku": {
