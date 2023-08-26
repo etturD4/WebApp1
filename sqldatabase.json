@@ -20,7 +20,7 @@
     "resources": [
         {
             "type": "Microsoft.Sql/servers",
-            "apiVersion": "2022-02-01-preview",
+            "apiVersion": "2021-08-01-preview",
             "name": "sqlServer2942",
             "location": "[resourceGroup().location]",
             "properties": {
@@ -31,7 +31,7 @@
         {
             "type": "Microsoft.Sql/servers/databases",
             "name": "[format('{0}/{1}', 'sqlServer2942', 'DB2942')]",
-            "apiVersion": "2022-02-01-preview",
+            "apiVersion": "2021-08-01-preview",
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Basic",
@@ -39,7 +39,7 @@
             },
             "properties": {},
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', '')]"
+                "[resourceId('Microsoft.Sql/servers', 'sqlServer2942')]"
             ]
         }
     ]
